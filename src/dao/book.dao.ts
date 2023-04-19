@@ -1,5 +1,6 @@
 import { BookRequest, FindBookBy } from "@/dto/models.dto";
 import bookModel from "@/models/book.model";
+import { ClientSession } from "mongoose";
 
 export default class BookDao {
   public static async getBookById(id: string) {
@@ -69,12 +70,16 @@ export default class BookDao {
     }
   }
 
-  public static async updateStock(id: string, stock: number) {
+  public static async updateStock(
+    id: string,
+    stock: number,
+    session: ClientSession
+  ) {
     try {
-      const updateBook = await bookModel.findById(id);
+      const updateBook = await bookModel.findById(id).session(session);
       if (updateBook) {
         updateBook.stock = updateBook.stock + stock; // + or -
-        await updateBook.save();
+        (await updateBook.save()).$session(session);
         return updateBook.toObject();
       } else {
         throw new Error("Book not found");

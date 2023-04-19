@@ -47,19 +47,10 @@ export type CheckoutRequest = {
 
 export type CheckoutResponse = {
   id: string;
-  user: {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: string;
-  };
-  book: {
-    id: string;
-    title: string;
-  };
+  userId: string;
+  bookId: string;
   checkoutDate: Date;
-  returnDate: Date;
+  returnDate: Date | null;
   status: string;
 };
 

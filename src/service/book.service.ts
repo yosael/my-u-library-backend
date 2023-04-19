@@ -38,25 +38,6 @@ export default class BookService {
     }
   }
 
-  public static async getBooks(): Promise<BookResponse[]> {
-    try {
-      const books = await BookDao.getBooks();
-      const result = books.map((book) => {
-        return {
-          id: book._id.toString(),
-          title: book.title,
-          author: book.author,
-          publishedYear: book.publishedYear,
-          genre: book.genre,
-          stock: book.stock,
-        };
-      });
-      return result;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   public static async createBook(book: BookRequest): Promise<BookResponse> {
     try {
       const newBook = await BookDao.createBook(book);

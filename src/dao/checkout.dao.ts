@@ -74,6 +74,8 @@ export default class CheckoutDao {
       } else {
         throw new Error("Checkout not found");
       }
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   }
 }

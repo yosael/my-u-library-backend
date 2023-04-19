@@ -25,15 +25,6 @@ export default class BookDao {
     }
   }
 
-  public static async getBooks() {
-    try {
-      const books = await bookModel.find();
-      return books.map((book) => book.toObject());
-    } catch (error) {
-      throw error;
-    }
-  }
-
   public static async createBook(book: BookRequest) {
     try {
       const newBook = await bookModel.create(book);

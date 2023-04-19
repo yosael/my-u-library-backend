@@ -85,4 +85,12 @@ export default class CheckoutService {
       throw error;
     }
   }
+
+  public static async returnBook(id: string) {
+    try {
+      await CheckoutDao.updateCheckoutToReturned(id);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

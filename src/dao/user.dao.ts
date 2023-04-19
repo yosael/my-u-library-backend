@@ -1,6 +1,5 @@
 import { UserRequest } from "@/dto/models.dto";
 import userModel from "@/models/user.model";
-import e from "express";
 
 export default class UserDao {
   public static async getUserById(id: string) {

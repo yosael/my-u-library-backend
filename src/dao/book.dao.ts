@@ -15,6 +15,15 @@ export default class BookDao {
     }
   }
 
+  public static async getAllBooks() {
+    try {
+      const books = await bookModel.find();
+      return books.map((book) => book.toObject());
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public static async getBooks() {
     try {
       const books = await bookModel.find();
@@ -55,6 +64,21 @@ export default class BookDao {
 
       const books = await bookModel.find(query);
       return books.map((book) => book.toObject());
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public static async updateStock(id: string, stock: number) {
+    try {
+      const updateBook = await bookModel.findById(id);
+      if (updateBook) {
+        updateBook.stock = updateBook.stock + stock; // + or -
+        await updateBook.save();
+        return updateBook.toObject();
+      } else {
+        throw new Error("Book not found");
+      }
     } catch (error) {
       throw error;
     }

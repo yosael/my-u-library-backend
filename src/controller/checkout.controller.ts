@@ -31,6 +31,7 @@ export const createCheckout = async (req: Request, res: Response) => {
 export const returnBook = async (req: Request, res: Response) => {
   try {
     const checkout = await CheckoutService.returnBook(req.params.id);
+
     res.status(200).json(checkout);
   } catch (error) {
     res.status(500).json((error as Error).message);

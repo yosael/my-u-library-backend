@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import bookRoutes from "@/routes/book.route";
+import checkoutRoutes from "@/routes/checkout.route";
+import userRoutes from "@/routes/user.route";
 
 dotenv.config();
 
@@ -17,6 +20,10 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send("Setup project");
 });
+
+//app.use("/api", bookRoutes);
+app.use("/api", checkoutRoutes);
+app.use("/api", userRoutes);
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server is running on port ${SERVER_PORT}`);

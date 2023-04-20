@@ -1,10 +1,11 @@
 import { UserRequest } from "@/dto/models.dto";
 import userModel from "@/models/user.model";
+import mongoose from "mongoose";
 
 export default class UserDao {
   public static async getUserById(id: string) {
     try {
-      const user = await userModel.findById(id);
+      const user = await userModel.findById({ _id: id });
       if (user) {
         return user.toObject();
       } else {
@@ -46,7 +47,7 @@ export default class UserDao {
     }
   }
 
-  public static async findUserByRole(role: string) {
+  public static async findUsersByRole(role: string) {
     try {
       const users = await userModel.find({ role });
       return users.map((user) => user.toObject());

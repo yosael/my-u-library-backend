@@ -7,10 +7,10 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/users:id", getUserById);
-router.get("/users", getUserByEmail);
+router.get("/users/:id", getUserById);
+router.get("/users", findAllUsers);
 router.post("/users", createUser);
-router.put("/users", findAllUsers);
-router.post("/users/find", findUserByRole);
+//router.put("/users", findAllUsers);
+router.get("/users/find/:role", findUserByRole);
 
 export default router;

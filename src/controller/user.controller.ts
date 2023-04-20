@@ -39,7 +39,7 @@ export const findAllUsers = async (req: Request, res: Response) => {
 
 export const findUserByRole = async (req: Request, res: Response) => {
   try {
-    const users = await UserService.findUserByRole(req.params.role);
+    const users = await UserService.findUsersByRole(req.params.role);
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json((error as Error).message);

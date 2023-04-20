@@ -68,9 +68,9 @@ export default class UserService {
     }
   }
 
-  public static async findUserByRole(role: string) {
+  public static async findUsersByRole(role: string) {
     try {
-      const users = await UserDao.findUserByRole(role);
+      const users = await UserDao.findUsersByRole(role);
       const result = users.map((user) => {
         return {
           id: user._id.toString(),

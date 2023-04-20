@@ -21,7 +21,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Setup project");
 });
 
-//app.use("/api", bookRoutes);
+app.use("/api", bookRoutes);
 app.use("/api", checkoutRoutes);
 app.use("/api", userRoutes);
 

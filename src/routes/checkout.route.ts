@@ -9,6 +9,6 @@ const router = Router();
 router.get("/checkouts:id", getCheckoutById);
 router.get("/checkouts", getAllCheckouts);
 router.post("/checkouts", createCheckout);
-router.put("/checkouts:id", returnBook);
+router.put("/checkouts/return/:id", returnBook);
 
 export default router;

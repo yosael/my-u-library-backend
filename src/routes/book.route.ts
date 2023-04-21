@@ -11,6 +11,6 @@ router.get("/books:id", getBookById);
 router.get("/books", getAllBooks);
 router.post("/books", createBook);
 router.put("/books:id", updateBook);
-router.post("books/find", findBookBy);
+router.get("/books/find", findBookBy);
 
 export default router;

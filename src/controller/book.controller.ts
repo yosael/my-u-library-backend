@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import BookService from "@/service/book.service";
-import { FindBookRequest } from "@/dto/models.dto";
+import { FindBookBy, FindBookRequest } from "@/dto/models.dto";
 
 export const getBookById = async (req: Request, res: Response) => {
   try {
@@ -40,8 +40,9 @@ export const updateBook = async (req: Request, res: Response) => {
 
 export const findBookBy = async (req: Request, res: Response) => {
   try {
-    const data = req.body as FindBookRequest;
-    const books = await BookService.findBookBy(data.by, data.value);
+    const by = req.query.by as FindBookBy;
+    const value = req.query.value as string;
+    const books = await BookService.findBookBy(by, value);
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json((error as Error).message);

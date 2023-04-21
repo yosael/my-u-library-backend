@@ -50,6 +50,26 @@ export default class UserService {
     }
   }
 
+  public static async updateUser(
+    id: string,
+    user: UserRequest
+  ): Promise<UserResponse> {
+    try {
+      const updatedUser = await UserDao.updateUser(id, user);
+      if (!updatedUser) throw new Error("User not found");
+      const result = {
+        id: updatedUser._id.toString(),
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+        role: updatedUser.role,
+      };
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public static async findAllUsers(): Promise<UserResponse[]> {
     try {
       const users = await UserDao.findAllUsers();

@@ -38,6 +38,18 @@ export default class UserDao {
     }
   }
 
+  public static async updateUser(id: string, user: UserRequest) {
+    try {
+      const updatedUser = await userModel.findByIdAndUpdate(id, user, {
+        new: true,
+        runValidators: true,
+      });
+      return updatedUser?.toObject();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public static async findAllUsers() {
     try {
       const users = await userModel.find();

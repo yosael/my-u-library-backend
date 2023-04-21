@@ -24,6 +24,7 @@ export const createUser = async (req: Request, res: Response) => {
     const user = await UserService.createUser(req.body);
     res.status(200).json(user);
   } catch (error) {
+    console.log("errorFound: ", error);
     res.status(500).json((error as Error).message);
   }
 };

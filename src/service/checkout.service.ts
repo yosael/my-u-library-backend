@@ -6,13 +6,23 @@ import {
 } from "@/dto/models.dto";
 
 export default class CheckoutService {
-  public static async getCheckoutById(id: string): Promise<CheckoutResponse> {
+  public static async getCheckoutById(
+    id: string
+  ): Promise<CheckoutListResponse> {
     try {
       const checkout = await CheckoutDao.getCheckoutById(id);
       return {
         id: checkout._id.toString(),
-        userId: checkout.user._id.toString(),
-        bookId: checkout.book._id.toString(),
+        user: {
+          id: checkout.user._id.toString(),
+          name: ((checkout.user.firstName as string) +
+            " " +
+            checkout.user.lastName) as string,
+        },
+        book: {
+          id: checkout.book._id.toString(),
+          title: checkout.book.title as string,
+        },
         status: checkout.status,
         checkoutDate: new Date(checkout.checkoutDate.getTime()),
         returnDate: checkout.returnDate
@@ -102,9 +112,27 @@ export default class CheckoutService {
     }
   }
 
-  public static async returnBook(id: string) {
+  public static async returnBook(id: string): Promise<CheckoutListResponse> {
     try {
-      await CheckoutDao.updateCheckoutToReturned(id);
+      const result = await CheckoutDao.updateCheckoutToReturned(id);
+      return {
+        id: result._id.toString(),
+        user: {
+          id: result.user._id.toString(),
+          name: ((result.user.firstName as string) +
+            " " +
+            result.user.lastName) as string,
+        },
+        book: {
+          id: result.book._id.toString(),
+          title: result.book.title as string,
+        },
+        status: result.status,
+        checkoutDate: new Date(result.checkoutDate.getTime()),
+        returnDate: result.returnDate
+          ? new Date(result.returnDate.getTime())
+          : null,
+      };
     } catch (error) {
       throw error;
     }

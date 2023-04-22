@@ -6,7 +6,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/checkouts:id", getCheckoutById);
+router.get("/checkouts/:id", getCheckoutById);
 router.get("/checkouts", getAllCheckouts);
 router.post("/checkouts", createCheckout);
 router.put("/checkouts/return/:id", returnBook);

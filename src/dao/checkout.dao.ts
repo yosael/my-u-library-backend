@@ -6,7 +6,10 @@ import bookModel from "@/models/book.model";
 export default class CheckoutDao {
   public static async getCheckoutById(id: string) {
     try {
-      const checkout = await checkoutModel.findById(id);
+      const checkout = await checkoutModel
+        .findById(id)
+        .populate("user", "firstName lastName")
+        .populate("book", "title");
       if (checkout) {
         return checkout.toObject();
       } else {
@@ -21,8 +24,8 @@ export default class CheckoutDao {
     try {
       const checkout = await checkoutModel
         .find({ user: userId })
-        .populate("User")
-        .populate("Book");
+        .populate("user", "firstName lastName")
+        .populate("book", "title");
       if (checkout) {
         return checkout.map((checkout) => checkout.toObject());
       } else {
@@ -89,6 +92,8 @@ export default class CheckoutDao {
             session,
           }
         )
+        .populate("user", "firstName lastName")
+        .populate("book", "title")
         .session(session);
 
       if (updatedCheckout) {

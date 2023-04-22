@@ -77,7 +77,7 @@ export default class CheckoutDao {
       const updatedCheckout = await checkoutModel
         .findByIdAndUpdate(
           id,
-          { status: "returned" },
+          { status: "returned", returnDate: new Date() },
           {
             new: true,
             runValidators: true,

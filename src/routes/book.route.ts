@@ -7,10 +7,10 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/books:id", getBookById);
+router.get("/books/:id", getBookById);
 router.get("/books", getAllBooks);
 router.post("/books", createBook);
-router.put("/books:id", updateBook);
+router.put("/books/:id", updateBook);
 router.get("/books/find", findBookBy);
 
 export default router;

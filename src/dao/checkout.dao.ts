@@ -35,7 +35,12 @@ export default class CheckoutDao {
 
   public static async getAllCheckouts() {
     try {
-      const checkouts = await checkoutModel.find();
+      const checkouts = await checkoutModel
+        .find()
+        .populate("user", "firstName lastName")
+        .populate("book", "title")
+        .sort({ checkoutDate: -1 });
+
       return checkouts.map((checkout) => checkout.toObject());
     } catch (error) {
       throw error;

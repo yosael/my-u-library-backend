@@ -1,6 +1,9 @@
 import CheckoutDao from "@/dao/checkout.dao";
-import { CheckoutRequest, CheckoutResponse } from "@/dto/models.dto";
-import userModel from "@/models/user.model";
+import {
+  CheckoutListResponse,
+  CheckoutRequest,
+  CheckoutResponse,
+} from "@/dto/models.dto";
 
 export default class CheckoutService {
   public static async getCheckoutById(id: string): Promise<CheckoutResponse> {
@@ -30,7 +33,9 @@ export default class CheckoutService {
         return {
           id: checkout._id.toString(),
           userId: checkout.user._id.toString(),
+          userName: checkout.user.name,
           bookId: checkout.book._id.toString(),
+          bookName: checkout.book.name,
           status: checkout.status,
           checkoutDate: new Date(checkout.checkoutDate.getTime()),
           returnDate: checkout.returnDate
@@ -44,14 +49,23 @@ export default class CheckoutService {
     }
   }
 
-  public static async getAllCheckouts(): Promise<CheckoutResponse[]> {
+  public static async getAllCheckouts(): Promise<CheckoutListResponse[]> {
     try {
       const checkouts = await CheckoutDao.getAllCheckouts();
+
       const result = checkouts.map((checkout) => {
         return {
           id: checkout._id.toString(),
-          userId: checkout.user._id.toString(),
-          bookId: checkout.book._id.toString(),
+          user: {
+            id: checkout.user._id.toString(),
+            name: ((checkout.user.firstName as string) +
+              " " +
+              checkout.user.lastName) as string,
+          },
+          book: {
+            id: checkout.book._id.toString(),
+            title: checkout.book.title as string,
+          },
           status: checkout.status,
           checkoutDate: new Date(checkout.checkoutDate.getTime()),
           returnDate: checkout.returnDate
@@ -73,7 +87,9 @@ export default class CheckoutService {
       const result = {
         id: newCheckout._id.toString(),
         userId: newCheckout.user._id.toString(),
+        userName: newCheckout.user.name,
         bookId: newCheckout.book._id.toString(),
+        bookName: newCheckout.book.name,
         status: newCheckout.status,
         checkoutDate: new Date(newCheckout.checkoutDate.getTime()),
         returnDate: newCheckout.returnDate

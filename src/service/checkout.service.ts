@@ -36,16 +36,22 @@ export default class CheckoutService {
 
   public static async getCheckoutByUser(
     userId: string
-  ): Promise<CheckoutResponse[]> {
+  ): Promise<CheckoutListResponse[]> {
     try {
       const checkout = await CheckoutDao.getCheckoutByUser(userId);
       const result = checkout.map((checkout) => {
         return {
           id: checkout._id.toString(),
-          userId: checkout.user._id.toString(),
-          userName: checkout.user.name,
-          bookId: checkout.book._id.toString(),
-          bookName: checkout.book.name,
+          user: {
+            id: checkout.user._id.toString(),
+            name: ((checkout.user.firstName as string) +
+              " " +
+              checkout.user.lastName) as string,
+          },
+          book: {
+            id: checkout.book._id.toString(),
+            title: checkout.book.title as string,
+          },
           status: checkout.status,
           checkoutDate: new Date(checkout.checkoutDate.getTime()),
           returnDate: checkout.returnDate

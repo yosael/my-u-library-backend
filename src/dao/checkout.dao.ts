@@ -24,13 +24,11 @@ export default class CheckoutDao {
     try {
       const checkout = await checkoutModel
         .find({ user: userId })
+        .sort({ checkoutDate: -1 })
         .populate("user", "firstName lastName")
         .populate("book", "title");
-      if (checkout) {
-        return checkout.map((checkout) => checkout.toObject());
-      } else {
-        throw new Error(`Checkouts not found for userId ${userId}`);
-      }
+
+      return checkout.map((checkout) => checkout.toObject());
     } catch (error) {
       throw error;
     }

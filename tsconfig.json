@@ -4,13 +4,8 @@
     "target": "es6",
     "noImplicitAny": true,
     "outDir": "./dist",
-    //"rootDir": "src",
     "strict": true,
-    "esModuleInterop": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "esModuleInterop": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]

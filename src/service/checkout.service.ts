@@ -1,4 +1,4 @@
-import CheckoutDao from "@/dao/checkout.dao";
+import CheckoutDao from "../dao/checkout.dao";
 import {
   CheckoutListResponse,
   CheckoutRequest,

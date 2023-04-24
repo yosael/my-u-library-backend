@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { UserDocument } from "@/models/user.model";
-import { BookDocument } from "@/models/book.model";
+import { UserDocument } from "./user.model";
+import { BookDocument } from "./book.model";
 
 interface CheckoutDocument extends mongoose.Document {
   user: UserDocument["_id"];

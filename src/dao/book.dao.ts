@@ -1,5 +1,5 @@
-import { BookRequest, FindBookBy } from "@/dto/models.dto";
-import bookModel from "@/models/book.model";
+import { BookRequest, FindBookBy } from "../dto/models.dto";
+import bookModel from "../models/book.model";
 import { ClientSession } from "mongoose";
 
 export default class BookDao {

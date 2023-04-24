@@ -2,9 +2,9 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-import bookRoutes from "@/routes/book.route";
-import checkoutRoutes from "@/routes/checkout.route";
-import userRoutes from "@/routes/user.route";
+import bookRoutes from "./routes/book.route";
+import checkoutRoutes from "./routes/checkout.route";
+import userRoutes from "./routes/user.route";
 
 dotenv.config();
 

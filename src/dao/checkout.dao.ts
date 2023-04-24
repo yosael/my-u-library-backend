@@ -1,7 +1,7 @@
-import checkoutModel from "@/models/checkout.model";
-import { CheckoutRequest } from "@/dto/models.dto";
+import checkoutModel from "../models/checkout.model";
+import { CheckoutRequest } from "../dto/models.dto";
 import mongoose from "mongoose";
-import bookModel from "@/models/book.model";
+import bookModel from "../models/book.model";
 
 export default class CheckoutDao {
   public static async getCheckoutById(id: string) {

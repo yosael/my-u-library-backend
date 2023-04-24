@@ -1,7 +1,7 @@
 import { login } from "./../controller/user.controller";
-import { UserRequest } from "@/dto/models.dto";
-import userModel from "@/models/user.model";
-import { compare, ncrypt } from "@/utils/cryptUtil";
+import { UserRequest } from "../dto/models.dto";
+import userModel from "../models/user.model";
+import { compare, ncrypt } from "../utils/cryptUtil";
 import mongoose from "mongoose";
 
 export default class UserDao {

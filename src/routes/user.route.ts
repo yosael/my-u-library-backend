@@ -1,8 +1,8 @@
-import { verifyToken } from "@/controller/security.controller";
-import { getUserById, login, updateUser } from "@/controller/user.controller";
-import { createUser } from "@/controller/user.controller";
-import { findAllUsers } from "@/controller/user.controller";
-import { findUserByRole } from "@/controller/user.controller";
+import { verifyToken } from "../controller/security.controller";
+import { getUserById, login, updateUser } from "../controller/user.controller";
+import { createUser } from "../controller/user.controller";
+import { findAllUsers } from "../controller/user.controller";
+import { findUserByRole } from "../controller/user.controller";
 import { Router } from "express";
 
 const router = Router();

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CheckoutService from "@/service/checkout.service";
+import CheckoutService from "../service/checkout.service";
 
 export const getCheckoutById = async (req: Request, res: Response) => {
   try {

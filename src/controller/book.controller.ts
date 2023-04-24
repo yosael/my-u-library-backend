@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import BookService from "@/service/book.service";
-import { FindBookBy, FindBookRequest } from "@/dto/models.dto";
+import BookService from "../service/book.service";
+import { FindBookBy, FindBookRequest } from "../dto/models.dto";
 
 export const getBookById = async (req: Request, res: Response) => {
   try {

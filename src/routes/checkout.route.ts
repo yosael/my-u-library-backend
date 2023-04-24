@@ -1,9 +1,9 @@
 import { getCheckoutsByUserId } from "./../controller/checkout.controller";
-import { getCheckoutById } from "@/controller/checkout.controller";
-import { getAllCheckouts } from "@/controller/checkout.controller";
-import { createCheckout } from "@/controller/checkout.controller";
-import { returnBook } from "@/controller/checkout.controller";
-import { verifyToken } from "@/controller/security.controller";
+import { getCheckoutById } from "../controller/checkout.controller";
+import { getAllCheckouts } from "../controller/checkout.controller";
+import { createCheckout } from "../controller/checkout.controller";
+import { returnBook } from "../controller/checkout.controller";
+import { verifyToken } from "../controller/security.controller";
 import { Router } from "express";
 
 const router = Router();

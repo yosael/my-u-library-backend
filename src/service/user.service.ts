@@ -1,5 +1,5 @@
-import UserDao from "@/dao/user.dao";
-import { UserRequest, UserResponse } from "@/dto/models.dto";
+import UserDao from "../dao/user.dao";
+import { UserRequest, UserResponse } from "../dto/models.dto";
 
 export default class UserService {
   public static async getUserById(id: string) {

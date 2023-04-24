@@ -1,5 +1,5 @@
-import BookDao from "@/dao/book.dao";
-import { BookRequest, BookResponse, FindBookBy } from "@/dto/models.dto";
+import BookDao from "../dao/book.dao";
+import { BookRequest, BookResponse, FindBookBy } from "../dto/models.dto";
 
 export default class BookService {
   public static async getBookById(id: string): Promise<BookResponse> {

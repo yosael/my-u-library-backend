@@ -85,14 +85,10 @@ export default class UserDao {
 
   public static async login(email: string, password: string) {
     try {
-      console.log("Incoming email: ", email);
-      console.log("Incoming password: ", password);
       const user = await userModel.findOne({ email });
 
       if (!user) throw new Error("Incorrect email or password");
-
       const isMatch = await compare(password, user.password);
-      console.log("isMatch: ", isMatch);
       if (!isMatch) throw new Error("Incorrect email or password");
 
       return user.toObject();

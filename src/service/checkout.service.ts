@@ -3,7 +3,7 @@ import {
   CheckoutListResponse,
   CheckoutRequest,
   CheckoutResponse,
-} from "@/dto/models.dto";
+} from "../dto/models.dto";
 
 export default class CheckoutService {
   public static async getCheckoutById(

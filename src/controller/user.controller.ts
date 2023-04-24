@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UserService from "@/service/user.service";
+import jwt from "jsonwebtoken";
 
 export const getUserById = async (req: Request, res: Response) => {
   try {
@@ -50,6 +51,34 @@ export const findUserByRole = async (req: Request, res: Response) => {
   try {
     const users = await UserService.findUsersByRole(req.params.role);
     res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json((error as Error).message);
+  }
+};
+
+export const login = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const user = await UserService.login(email, password);
+    const token = jwt.sign({ user }, process.env.JWT_SECRET as string, {
+      expiresIn: "1h",
+    });
+
+    res.status(200).json({
+      id: user._id.toString(),
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      token,
+    });
+  } catch (error) {
+    res.status(500).json((error as Error).message);
+  }
+};
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    res.status(200).json("User logged out");
   } catch (error) {
     res.status(500).json((error as Error).message);
   }

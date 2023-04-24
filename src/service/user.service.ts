@@ -105,4 +105,13 @@ export default class UserService {
       throw error;
     }
   }
+
+  public static async login(email: string, password: string) {
+    try {
+      const result = await UserDao.login(email, password);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
